@@ -1,0 +1,33 @@
+{
+  "name": "improv-passthrough",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "publish": "wrangler publish --name improv-passthrough",
+    "test": "wrangler dev src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metal0/improv-passthrough.git"
+  },
+  "author": "metal0",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/metal0/improv-passthrough/issues"
+  },
+  "homepage": "https://github.com/metal0/improv-passthrough#readme",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230214.0",
+    "@types/turndown": "^5.0.1",
+    "typescript": "^4.9.5",
+    "vitest": "^0.28.5",
+    "wrangler": "^2.10.0"
+  },
+  "dependencies": {
+    "discord-api-types": "^0.37.34",
+    "discord.js": "^14.7.1",
+    "node-html-markdown": "^1.3.0",
+    "zod": "^3.20.6"
+  }
+}
