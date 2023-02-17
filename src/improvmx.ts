@@ -42,9 +42,9 @@ export const ImprovEmailWebhook = z.object({
   attachments: z.array(ImprovEmailWebhookAttachment).optional(),
   raw_url: z.string().optional(),
   envelope: z.object({
-    return_path: z.string(),
+    return_path: z.string().optional(),
     recipient: z.string(),
-    hostname: z.string(),
+    hostname: z.string().optional(),
     remote_ip: z.string()
   }),
 });
