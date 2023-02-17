@@ -29,7 +29,7 @@ function payloadBuilder(webhook: ImprovEmailWebhook): WebhookCreateMessageOption
     username: `✉ ${webhook.envelope.recipient}`,
     avatarURL: 'https://msafe.i0.tf/hHYsf.png',
     tts: false,
-    content: rawText.length < 4000 ? rawText : '',
+    // content: rawText.length < 4000 ? rawText : '',
     embeds: [{
       title: `Subject: ${webhook.subject ?? 'None'}`,
       timestamp: webhook.timestamp ? new Date(webhook.timestamp*1000).toISOString() : undefined,

@@ -29,7 +29,7 @@ async function routeRequest(request: Request, env: Env, ctx: ExecutionContext): 
 
 	try {
 		const webhook = await request.json();
-		console.log('webhook', webhook);
+		// console.log('webhook', webhook);
 		await env.improv.put('latest-webhook', JSON.stringify(webhook, null, 2));
 		const validate = ImprovEmailWebhook.parse(webhook);
 		// return new Response(JSON.stringify(validate, null, 2));
