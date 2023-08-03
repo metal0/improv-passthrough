@@ -53,16 +53,16 @@ export type ImprovEmailWebhook = z.TypeOf<typeof ImprovEmailWebhook>;
 
 
 export function censorPayload(data: ImprovEmailWebhook): ImprovEmailWebhook {
-  const toCensor = [];
+  //const toCensor = [];
   const cp: ImprovEmailWebhook = JSON.parse(JSON.stringify(data));
-  if(cp.envelope.return_path) toCensor.push(cp.envelope.return_path)
-  if(cp['return-path']?.email) toCensor.push(cp['return-path'].email)
-  if(cp['return-path']?.name) toCensor.push(cp['return-path'].name)
+  //if(cp.envelope.return_path) toCensor.push(cp.envelope.return_path)
+  //if(cp['return-path']?.email) toCensor.push(cp['return-path'].email)
+  //if(cp['return-path']?.name) toCensor.push(cp['return-path'].name)
   delete cp.envelope.return_path;
   delete cp['return-path'];
-  let ff = JSON.stringify(cp);
-  toCensor.forEach((c) => {
+  //let ff = JSON.stringify(cp);
+  /*toCensor.forEach((c) => {
     ff = ff.replaceAll(c.toLowerCase(), '<censored>')
-  })
-  return JSON.parse(ff);
+  })*/
+  return cp;
 }
