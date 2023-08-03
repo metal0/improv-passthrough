@@ -1,6 +1,9 @@
 name = "improv-passthrough"
 main = "src/index.ts"
 compatibility_date = "2023-02-16"
-kv_namespaces = [
-      { binding = "improv", id = "68baa15f47cc4039b53dd2b6b3c7bab1" }
-]
+
+[env.staging]
+vars = { ENVIRONMENT = "staging", SECRET = "123", MATRIX_HOOKSHOT_HOST = "https://i0.tf/hookshot/webhook" }
+
+[env.production]
+vars = { ENVIRONMENT = "production" }

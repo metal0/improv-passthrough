@@ -1,9 +1,10 @@
-import { ImprovEmailWebhook } from './improvmx.js';
+import { ImprovEmailWebhook, censorPayload } from './improvmx.js';
 import { platforms } from './platform.js';
 import './bridges/discord/process'
+import './bridges/matrix-hookshot/process'
 
 export interface Env {
-	improv: KVNamespace;
+	// improv: KVNamespace;
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
 	// MY_KV_NAMESPACE: KVNamespace;
 	//
@@ -16,6 +17,7 @@ export interface Env {
 	// Example binding to a Service. Learn more at https://developers.cloudflare.com/workers/runtime-apis/service-bindings/
 	// MY_SERVICE: Fetcher;
 	SECRET: string;
+	MATRIX_HOOKSHOT_HOST: string;
 }
 
 
@@ -30,15 +32,16 @@ async function routeRequest(request: Request, env: Env, ctx: ExecutionContext): 
 	try {
 		const webhook = await request.json();
 		// console.log('webhook', webhook);
-		await env.improv.put('latest-webhook', JSON.stringify(webhook, null, 2));
+		// await env.improv.put('latest-webhook', JSON.stringify(webhook, null, 2));
 		const validate = ImprovEmailWebhook.parse(webhook);
 		// return new Response(JSON.stringify(validate, null, 2));
-		const res = await platforms[platform].handler({request, env, ctx, token: platformToken, webhook: validate});
+
+		const res = await platforms[platform].handler({request, env, ctx, token: platformToken, webhook: censorPayload( validate)});
 		if(res === true) return new Response(JSON.stringify({success: true}), {status: 200})
 		return new Response(JSON.stringify({success: false, message: res}), {status: 400});
 	} catch(e: any) {
 		console.error(e);
-		await env.improv.put('latest-error', JSON.stringify(e, null, 2));
+		// await env.improv.put('latest-error', JSON.stringify(e, null, 2));
 		return new Response(JSON.stringify({success: false, message: e.message}), {status: 500});
 	}
 }

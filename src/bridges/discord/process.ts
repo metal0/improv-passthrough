@@ -1,5 +1,4 @@
 import { ImprovEmailWebhook } from '../../improvmx.js';
-import { NodeHtmlMarkdown, NodeHtmlMarkdownOptions } from 'node-html-markdown'
 import { WebhookCreateMessageOptions } from 'discord.js'
 import { BridgePlatform } from '../../platform.js';
 
