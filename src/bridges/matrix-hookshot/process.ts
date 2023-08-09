@@ -16,7 +16,7 @@ function renderEmailBodyText(text: string, json: string, sent_to: string[]): str
           <summary><b>Email Payload JSON:</b></summary>
           <pre><code>${json}</code></pre>
       </details>
-      <small>(Sent to ${sent_to.join(',')})
+      <small>(Sent to ${sent_to.join(',')})</small>
   </root>`
 }
 
